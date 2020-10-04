@@ -19,6 +19,7 @@ import java.util.Date;
  *
  * spring整合junit
  */
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml"})
 public class DataSourceTest {
@@ -39,8 +40,10 @@ public class DataSourceTest {
 
     @Test
     public void testInsert() {
-        Admin admin = new Admin(null, "admin", "命猫", "12138", "admin@outlook.com", new Date());
+        Admin admin = new Admin(null, "Cifanse", "稀饭是", "12138", "cifanse@outlook.com", new Date());
+
         int row = adminMapper.insert(admin);
+
         System.out.println("受影响的行数：" + row);
     }
 
