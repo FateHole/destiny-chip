@@ -2,6 +2,7 @@ package com.fatehole.destinychip.test;
 
 import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.mapper.AdminMapper;
+import com.fatehole.destinychip.service.api.AdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Date;
  */
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml"})
 public class DataSourceTest {
 
     @Autowired
@@ -29,6 +30,9 @@ public class DataSourceTest {
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private AdminService adminService;
 
     @Test
     public void testConnection() throws SQLException {
@@ -45,6 +49,11 @@ public class DataSourceTest {
         int row = adminMapper.insert(admin);
 
         System.out.println("受影响的行数：" + row);
+    }
+
+    @Test
+    public void testTX() {
+        adminService.saveAdmin(new Admin(null, "Tom", "汤包", "1234567", "tom@163.com", new Date()));
     }
 
 }
