@@ -4,7 +4,7 @@ It's a 🥚 shell project in the hope of raising a chip of fate☘
 
 The above are all Adolescent Delusions statements😉.
 
-This is a hands-on project and she will help me get familiar with the process and knowledge base of real-life project development. 
+This is a hands-on project, she will help me get familiar with the process of real project development, and the integration of various technology stacks.
 
 She was born out of the atguigu.com's Crowdfunding Network project. 
 
