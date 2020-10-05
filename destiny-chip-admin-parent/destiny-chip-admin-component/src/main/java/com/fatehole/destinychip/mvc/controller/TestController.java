@@ -1,6 +1,5 @@
 package com.fatehole.destinychip.mvc.controller;
 
-import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.service.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,4 +23,5 @@ public class TestController {
 
         return "success";
     }
+
 }
