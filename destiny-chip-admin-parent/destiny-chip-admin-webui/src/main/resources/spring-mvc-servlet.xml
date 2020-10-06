@@ -7,14 +7,31 @@
 
     <context:component-scan base-package="com.fatehole.destinychip.mvc" />
 
-    <mvc:annotation-driven />
-
     <!-- 放行静态资源访问 -->
     <mvc:default-servlet-handler />
 
+    <mvc:annotation-driven />
+
+    <!-- 视图解析器 -->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!-- 配置基于xml的异常映射 -->
+    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 配置异常类型和具体视图页面的对应关系 -->
+        <property name="exceptionMappings">
+            <props>
+                <!--
+                    key：属性指定异常全类名
+                    标签体：对应的视图（这个值要拼前后缀）
+                -->
+                <prop key="java.lang.Exception">system-error</prop>
+            </props>
+        </property>
+    </bean>
+
+    <mvc:view-controller path="/admin/login" view-name="admin/admin-login" />
 
 </beans>
