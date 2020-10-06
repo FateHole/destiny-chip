@@ -7,6 +7,6 @@
     pageContext.setAttribute("cts", request.getContextPath());
 %>
 <body>
-<a href="${cts}/admins">select</a>
+
 </body>
 </html>
