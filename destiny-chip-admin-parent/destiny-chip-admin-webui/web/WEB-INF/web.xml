@@ -50,9 +50,9 @@
 
     <servlet-mapping>
         <servlet-name>springDispatcherServlet</servlet-name>
-        <!--        <url-pattern>/</url-pattern>-->
-        <url-pattern>*.json</url-pattern>
-        <url-pattern>*.html</url-pattern>
+            <url-pattern>/</url-pattern>
+<!--        <url-pattern>*.json</url-pattern>-->
+<!--        <url-pattern>*.html</url-pattern>-->
     </servlet-mapping>
 
     <filter>
@@ -65,6 +65,10 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
+    <!-- 允许访问静态资源 -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/**</url-pattern>
+    </servlet-mapping>
 
 </web-app>
