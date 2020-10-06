@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="keys" content="">
     <meta name="author" content="">
-<%--    <base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/" />--%>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/login.css">
+    <base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/" />
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/login.css">
     <style>
 
     </style>
@@ -45,7 +45,7 @@
         </form>
 
     </div>
-    <script src="/jquery/jquery-2.1.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/jquery/jquery-2.1.1.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
