@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>错误</title>
 </head>
-<%
-    pageContext.setAttribute("cts", request.getContextPath());
-%>
 <body>
-
+<h1>出错了！！！</h1>
+${requestScope.exception.message}
 </body>
 </html>
