@@ -1,6 +1,7 @@
 package com.fatehole.destinychip.mvc.config;
 
 import com.fatehole.destinychip.constant.DestinyChipConstant;
+import com.fatehole.destinychip.exception.AccessForbiddenException;
 import com.fatehole.destinychip.exception.LoginFailedException;
 import com.fatehole.destinychip.util.DestinyChipUtil;
 import com.fatehole.destinychip.util.ResultEntity;
@@ -66,8 +67,21 @@ public class DestinyChipExceptionResolver {
         return commonResolve("system-error", exception, request, response);
     }
 
+    /**
+     * 处理登陆失败后抛出的异常
+     */
     @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolveLoginFailedException(LoginFailedException exception,
+                                                    HttpServletRequest request,
+                                                    HttpServletResponse response) throws IOException {
+        return commonResolve("admin/admin-login", exception, request, response);
+    }
+
+    /**
+     * 处理用户未登录，非法访问受保护资源所抛出的异常
+     */
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolveAccessForbiddenException(AccessForbiddenException exception,
                                                     HttpServletRequest request,
                                                     HttpServletResponse response) throws IOException {
         return commonResolve("admin/admin-login", exception, request, response);
