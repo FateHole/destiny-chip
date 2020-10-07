@@ -11,7 +11,7 @@ public class StringTest {
 
     @Test
     public void testSource() {
-        String source = "23a34342";
+        String source = "12138";
         String md5 = DestinyChipUtil.md5(source);
         System.out.println(md5);
     }
