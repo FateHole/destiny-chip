@@ -4,6 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-    ${msg}成功
+    <h1>临时页面</h1>
+    <p>${sessionScope.loginAdmin.username}</p>
 </body>
 </html>

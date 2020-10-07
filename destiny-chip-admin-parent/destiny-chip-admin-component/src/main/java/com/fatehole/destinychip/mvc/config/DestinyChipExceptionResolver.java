@@ -1,6 +1,7 @@
 package com.fatehole.destinychip.mvc.config;
 
 import com.fatehole.destinychip.constant.DestinyChipConstant;
+import com.fatehole.destinychip.exception.LoginFailedException;
 import com.fatehole.destinychip.util.DestinyChipUtil;
 import com.fatehole.destinychip.util.ResultEntity;
 import com.google.gson.Gson;
@@ -63,5 +64,12 @@ public class DestinyChipExceptionResolver {
                                                     HttpServletRequest request,
                                                     HttpServletResponse response) throws IOException {
         return commonResolve("system-error", exception, request, response);
+    }
+
+    @ExceptionHandler(value = LoginFailedException.class)
+    public ModelAndView resolveLoginFailedException(LoginFailedException exception,
+                                                    HttpServletRequest request,
+                                                    HttpServletResponse response) throws IOException {
+        return commonResolve("admin/admin-login", exception, request, response);
     }
 }
