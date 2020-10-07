@@ -22,7 +22,7 @@ public class TestController {
     public String test(Model model, HttpServletRequest request) {
 
         model.addAttribute("msg", adminService.getAll());
-        // int i = 19 / 0;
+        int i = 19 / 0;
 
         return "success";
     }
