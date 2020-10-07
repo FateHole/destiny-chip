@@ -28,11 +28,26 @@
                     标签体：对应的视图（这个值要拼前后缀）
                 -->
                 <prop key="java.lang.Exception">error/system-error</prop>
+                <prop key="com.fatehole.destinychip.exception.AccessForbiddenException">admin/admin-login</prop>
             </props>
         </property>
     </bean>
 
     <mvc:view-controller path="/admin/login" view-name="admin/admin-login" />
     <mvc:view-controller path="/admin/main" view-name="admin/admin-main" />
+
+    <!-- 注册拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- mvc:mapping：配置要拦截的资源; /**：多层目录 -->
+            <mvc:mapping path="/**"/>
+            <!-- mvc:exclude-mapping：配置不拦截的页面 -->
+            <mvc:exclude-mapping path="/admin/login"/>
+            <mvc:exclude-mapping path="/admin/toLogin"/>
+            <mvc:exclude-mapping path="/admin/logout"/>
+            <!-- 配置拦截器的类 -->
+            <bean class="com.fatehole.destinychip.mvc.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
