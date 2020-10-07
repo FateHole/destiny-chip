@@ -27,7 +27,7 @@
                     key：属性指定异常全类名
                     标签体：对应的视图（这个值要拼前后缀）
                 -->
-                <prop key="java.lang.Exception">system-error</prop>
+                <prop key="java.lang.Exception">error/system-error</prop>
             </props>
         </property>
     </bean>

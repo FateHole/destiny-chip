@@ -12,5 +12,7 @@ public class DestinyChipConstant {
 
     public static final String MESSAGE_ACCESS_FORBIDDEN = "权限不足，请先登陆！";
 
+    public static final String MESSAGE_STRING_INVALIDATE = "字符串常量不合法！";
+
     public static final String ATTR_NAME_EXCEPTION = "exception";
 }
