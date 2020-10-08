@@ -1,6 +1,7 @@
 package com.fatehole.destinychip.service.api;
 
 import com.fatehole.destinychip.entity.Admin;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -30,4 +31,13 @@ public interface AdminService {
      *         失败抛出异常
      */
     Admin getAdminBbyLoginAccount(String loginAccount, String password);
+
+    /**
+     * 分页方法
+     * @param keyword 搜索关键字
+     * @param pageNum 页数
+     * @param pageSize 每页的大小
+     * @return 含有分页数据的PageInfo对象
+     */
+    PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize);
 }

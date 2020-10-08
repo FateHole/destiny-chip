@@ -44,7 +44,7 @@ public class DataSourceTest {
 
     @Test
     public void testInsert() {
-        Admin admin = new Admin(null, "Cifanse", "稀饭是", "12138", "cifanse@outlook.com", new Date());
+        Admin admin = new Admin(null, "chip", "芯片", "E10ADC3949BA59ABBE56E057F20F883E", "chip@168.com", new Date());
 
         int row = adminMapper.insert(admin);
 

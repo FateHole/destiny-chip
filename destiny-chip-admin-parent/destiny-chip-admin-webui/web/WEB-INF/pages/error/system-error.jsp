@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,8 @@
     <meta name="keys" content="">
     <meta name="author" content="">
     <title>系统异常</title>
-    <base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/" />
+    <base
+        href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/" />
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/font-awesome.min.css">
     <link rel="stylesheet" href="static/css/login.css">
@@ -18,6 +20,7 @@
 
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -36,7 +39,7 @@
             requestScope.exception.message相当与exception.getMessage()
         -->
         <h3 style="text-align: center">${requestScope.exception.message}</h3>
-        <button style="width: 150px;margin: 5% auto;"  class="btn btn-lg btn-success btn-block">返回上一步</button>
+        <button style="width: 150px;margin: 5% auto;" class="btn btn-lg btn-success btn-block">返回上一步</button>
     </div>
     <script type="text/javascript" src="static/jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
@@ -49,4 +52,5 @@
         });
     </script>
 </body>
+
 </html>

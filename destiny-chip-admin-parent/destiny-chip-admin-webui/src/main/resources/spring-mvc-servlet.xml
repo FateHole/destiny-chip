@@ -45,6 +45,8 @@
             <mvc:exclude-mapping path="/admin/login"/>
             <mvc:exclude-mapping path="/admin/toLogin"/>
             <mvc:exclude-mapping path="/admin/logout"/>
+            <mvc:exclude-mapping path="/admin/getPageInfo"/>
+            <mvc:exclude-mapping path="/static/**"/>
             <!-- 配置拦截器的类 -->
             <bean class="com.fatehole.destinychip.mvc.interceptor.LoginInterceptor" />
         </mvc:interceptor>

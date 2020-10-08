@@ -72,6 +72,16 @@
   <sql id="Base_Column_List">
     id, login_account, username, password, email, create_time
   </sql>
+  <select id="selectAdminByKeyword" resultMap="BaseResultMap">
+    select id, login_account, username, password, email, create_time
+    from t_admin
+    where
+          login_account like concat('%', #{keyword}, '%')
+        or
+          username like concat('%', #{keyword}, '%')
+        or
+          email like concat('%', #{keyword}, '%')
+  </select>
   <select id="selectByExample" parameterType="com.fatehole.destinychip.entity.AdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
