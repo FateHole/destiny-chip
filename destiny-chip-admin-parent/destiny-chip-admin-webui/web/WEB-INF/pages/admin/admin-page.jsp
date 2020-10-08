@@ -47,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:if test="${empty requestScope.pegeInfo.list }">
+                                    <c:if test="${empty requestScope.pageInfo.list }">
                                         <tr>
                                             <td colspan="6" style="text-align: center" >抱歉！没有查询到您要的数据</td>
                                         </tr>
