@@ -3,8 +3,10 @@ package com.fatehole.destinychip.mvc.controller;
 import com.fatehole.destinychip.constant.DestinyChipConstant;
 import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.service.api.AdminService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,5 +42,20 @@ public class AdminController {
         session.invalidate();
 
         return "redirect:/admin/login";
+    }
+
+    @RequestMapping("/getPageInfo")
+    public String getPageInfo(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+                              @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                              @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                              Model model) {
+
+        // 调用service方法去获取PageInfo对象
+        PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
+
+        // 将PageInfo对象存入模型
+        model.addAttribute(DestinyChipConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+
+        return "admin/admin-page";
     }
 }

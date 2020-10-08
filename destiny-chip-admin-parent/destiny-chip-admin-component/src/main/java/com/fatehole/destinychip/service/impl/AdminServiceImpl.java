@@ -7,6 +7,8 @@ import com.fatehole.destinychip.exception.LoginFailedException;
 import com.fatehole.destinychip.mapper.AdminMapper;
 import com.fatehole.destinychip.service.api.AdminService;
 import com.fatehole.destinychip.util.DestinyChipUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,18 @@ public class AdminServiceImpl implements AdminService {
             // 8、否则返回Admin对象
             return admin;
         }
+    }
+
+    @Override
+    public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
+
+        // 调用PageHelper的静态方法，开启分页功能
+        PageHelper.startPage(pageNum, pageSize);
+
+        // 执行查询
+        List<Admin> admins = adminMapper.selectAdminByKeyword(keyword);
+
+        // 封装的PageInfo对象中
+        return new PageInfo<>(admins);
     }
 }
