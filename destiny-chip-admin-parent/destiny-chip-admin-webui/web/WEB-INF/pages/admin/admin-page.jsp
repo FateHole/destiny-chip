@@ -75,16 +75,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="6" align="center">
-                                            <ul class="pagination">
-                                                <li class="disabled"><a href="#">上一页</a></li>
-                                                <li class="active"><a href="#">1 <span
-                                                            class="sr-only">(current)</span></a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li><a href="#">下一页</a></li>
-                                            </ul>
+                                            <div id="Pagination" class="pagination"></div>
                                         </td>
                                     </tr>
 
@@ -97,6 +88,46 @@
         </div>
     </div>
     <%@ include file="../include/tail.jsp" %>
+    <script type="text/javascript" src="static/jquery/jquery.pagination.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 调用后面声明的函数对页码导航条进行初始化操作
+            initPagination();
+        });
+
+        // 生成页码导航条的函数
+        function initPagination() {
+            // 获得总记录数
+            var totalRecord = ${requestScope.pageInfo.total};
+
+            // 声明一个json对象储存Pagination要设置的属性
+            var properties = {
+                num_edge_entries: 3,    // 边缘页数
+                num_display_entries: 5, // 主体页数
+                callback: pageSelectCallback,   // 指定用户点击‘翻页’按钮跳转页面的回调函数
+                items_per_page: ${requestScope.pageInfo.pageSize},  // 每页要显示的数据的数量
+                current_page: ${requestScope.pageInfo.pageNum - 1},  // 配置pagination内部使用的是pageIndex来管理页码，pageIndex从0开始，pageNum从1开始
+                prev_text: "上一页",   // 上一页按钮上现实的文本
+                next_text: "下一页"    // 下一页按钮上现实的文本
+                };
+
+            // 生成页码导航条
+            $("#Pagination").pagination(totalRecord, properties);
+
+        }
+
+        // 回调函数的定义：声明出来的以后不是自己调用，而是交给系统或框架去调用
+        // 用户点击1、2、3时调用这个方法实现跳转
+        function pageSelectCallback(pageIndex, jQuery) {
+            // 根据pageIndex计算得到pageNum
+            var pageNum = pageIndex + 1;
+
+            // 跳转页面
+            window.location.href = "admin/getPageInfo?pageNum=" + pageNum;
+
+            return false;
+        }
+    </script>
 </body>
 
 </html>
