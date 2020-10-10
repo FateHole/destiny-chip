@@ -3,15 +3,23 @@ package com.fatehole.destinychip.service.impl;
 import com.fatehole.destinychip.constant.DestinyChipConstant;
 import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.entity.AdminExample;
+import com.fatehole.destinychip.exception.LoginAccountAlreadyInUserException;
+import com.fatehole.destinychip.exception.LoginAccountAlreadyInUserForUpdateException;
 import com.fatehole.destinychip.exception.LoginFailedException;
 import com.fatehole.destinychip.mapper.AdminMapper;
 import com.fatehole.destinychip.service.api.AdminService;
 import com.fatehole.destinychip.util.DestinyChipUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,9 +33,36 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+    private Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
+
     @Override
     public void saveAdmin(Admin admin) {
-        adminMapper.insert(admin);
+        // 密码加密
+        String password = admin.getPassword();
+        password = DestinyChipUtil.md5(password);
+        admin.setPassword(password);
+
+        // 生成创建时间
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String createTimeStr = format.format(new Date());
+        Date createTime = null;
+        try {
+            createTime = format.parse(createTimeStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        admin.setCreateTime(createTime);
+
+        // 执行
+        try {
+            adminMapper.insert(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("异常全类名：" + e.getClass().getName());
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAccountAlreadyInUserException(DestinyChipConstant.MESSAGE_LOGIN_ACCOUNT_ALREADY_IN_USE);
+            }
+        }
     }
 
     @Override
@@ -91,5 +126,29 @@ public class AdminServiceImpl implements AdminService {
 
         // 封装的PageInfo对象中
         return new PageInfo<>(admins);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        adminMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Admin getAdminById(Integer id) {
+        return adminMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void update(Admin admin) {
+        // Selective表示有选择的更新，对null值不更新
+        try {
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("异常全类名：" + e.getClass().getName());
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAccountAlreadyInUserForUpdateException(DestinyChipConstant.MESSAGE_LOGIN_ACCOUNT_ALREADY_IN_USE);
+            }
+        }
     }
 }
