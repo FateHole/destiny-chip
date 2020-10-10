@@ -40,4 +40,23 @@ public interface AdminService {
      * @return 含有分页数据的PageInfo对象
      */
     PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize);
+
+    /**
+     * 删除用户
+     * @param id 用户id
+     */
+    void remove(Integer id);
+
+    /**
+     * 根据id查出Admin对象
+     * @param id id号
+     * @return Admin对象
+     */
+    Admin getAdminById(Integer id);
+
+    /**
+     * 修改信息
+     * @param admin 修改信息
+     */
+    void update(Admin admin);
 }

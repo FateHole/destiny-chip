@@ -2,10 +2,13 @@ package com.fatehole.destinychip.mvc.config;
 
 import com.fatehole.destinychip.constant.DestinyChipConstant;
 import com.fatehole.destinychip.exception.AccessForbiddenException;
+import com.fatehole.destinychip.exception.LoginAccountAlreadyInUserException;
+import com.fatehole.destinychip.exception.LoginAccountAlreadyInUserForUpdateException;
 import com.fatehole.destinychip.exception.LoginFailedException;
 import com.fatehole.destinychip.util.DestinyChipUtil;
 import com.fatehole.destinychip.util.ResultEntity;
 import com.google.gson.Gson;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -85,5 +88,25 @@ public class DestinyChipExceptionResolver {
                                                     HttpServletRequest request,
                                                     HttpServletResponse response) throws IOException {
         return commonResolve("admin/admin-login", exception, request, response);
+    }
+
+    /**
+     * 处理用户注册时，用户名已被注册的异常
+     */
+    @ExceptionHandler(value = LoginAccountAlreadyInUserException.class)
+    public ModelAndView resolveLoginAccountAlreadyInUserException(LoginAccountAlreadyInUserException exception,
+                                                        HttpServletRequest request,
+                                                        HttpServletResponse response) throws IOException {
+        return commonResolve("admin/admin-add", exception, request, response);
+    }
+
+    /**
+     * 处理用户信息更改时，用户名已被注册的异常
+     */
+    @ExceptionHandler(value = LoginAccountAlreadyInUserForUpdateException.class)
+    public ModelAndView resolveLoginAccountAlreadyInUserForUpdateException(LoginAccountAlreadyInUserForUpdateException exception,
+                                                                  HttpServletRequest request,
+                                                                  HttpServletResponse response) throws IOException {
+        return commonResolve("error/system-error", exception, request, response);
     }
 }
