@@ -1,11 +1,12 @@
 package com.fatehole.destinychip.mvc.controller;
 
-import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.service.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author FateCat
@@ -18,10 +19,12 @@ public class TestController {
     private AdminService adminService;
 
     @RequestMapping("/admins")
-    public String test(Model model) {
+    public String test(Model model, HttpServletRequest request) {
 
         model.addAttribute("msg", adminService.getAll());
+        int i = 19 / 0;
 
         return "success";
     }
+
 }
