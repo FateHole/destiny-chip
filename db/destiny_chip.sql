@@ -12,4 +12,12 @@ CREATE TABLE `t_admin` (
     `email` VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱地址',
     `create_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`)
-)
+);
+
+DROP TABLE IF EXISTS `t_role`;
+
+CREATE TABLE `t_role` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `name` VARCHAR(100) NULL DEFAULT NULL COMMENT '表名',
+    PRIMARY KEY (`id`)
+);
