@@ -20,10 +20,12 @@
                             <div class="form-group has-feedback">
                                 <div class="input-group">
                                     <div class="input-group-addon">查询条件</div>
-                                    <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                    <input id="keywordInput" class="form-control has-success" type="text" placeholder="请输入查询条件">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
+                            <button id="searchBtn" type="button" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
                         </form>
                         <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
                         <button type="button" class="btn btn-primary" style="float:right;" onclick="window.location.href='form.html'"><i class="glyphicon glyphicon-plus"></i> 新增</button>
@@ -68,8 +70,17 @@
             window.pageSize = 5;
             window.keyword = "";
 
-            // 调用
+            // 调用执行分页的函数，显示分页效果
             generatePage();
+
+            // 给查询按钮绑定单击响应函数
+            $("#searchBtn").click(function () {
+               // 获取关键词数据赋值给全局变量
+                window.keyword = $("#keywordInput").val();
+
+                // 调用分页的函数，刷新页面
+                generatePage();
+            });
         });
 
     </script>

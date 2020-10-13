@@ -63,9 +63,12 @@ function fillTableBody(pageInfo) {
     // 清除tbody中的旧数据
     $("#rolePageBody").empty();
 
+    // 这里清空是为了让没有搜索结果时不显示分页导航条
+    $("#Pagination").empty();
+
     // 判断pageInfo是否有效
     if (pageInfo == null || pageInfo.list == null || pageInfo.list.length === 0) {
-        $('#rolePageBody').append('<tr><td colspan="4">抱歉！没有查到您要的数据！</td></tr>');
+        $('#rolePageBody').append('<tr><td colspan="4" align="center">抱歉！没有查到您要的数据！</td></tr>');
         return ;
     }
 
