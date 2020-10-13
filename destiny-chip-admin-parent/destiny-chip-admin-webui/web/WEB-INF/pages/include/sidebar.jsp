@@ -3,7 +3,7 @@
     <div class="tree">
         <ul style="padding-left:0;" class="list-group">
             <li class="list-group-item tree-closed" >
-                <a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+                <a href="admin/main"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
             </li>
             <li class="list-group-item tree-closed">
                 <span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span>
@@ -12,7 +12,7 @@
                         <a href="admin/getPageInfo"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="role.html"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
+                        <a href="role/page"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
                     </li>
                     <li style="height:30px;">
                         <a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 菜单维护</a>
