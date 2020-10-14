@@ -33,4 +33,13 @@ public class RoleController {
         // 封装到ResultEntity对象中返回（如果上面的操作抛出的异常，交给异常映射机制处理）
         return ResultEntity.successWithData(pageInfo);
     }
+
+    @ResponseBody
+    @RequestMapping("/save")
+    public ResultEntity<String> saveRole(Role role) {
+
+        roleService.saveRole(role);
+
+        return ResultEntity.successWithData("成功");
+    }
 }
