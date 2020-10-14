@@ -19,4 +19,9 @@ public interface RoleService {
     PageInfo<Role> getPageInfo(Integer pageNum, Integer pageSize, String keyword);
 
 
+    /**
+     * 根据传过来的role名创建在数据库中创建对象
+     * @param role 角色名
+     */
+    void saveRole(Role role);
 }
