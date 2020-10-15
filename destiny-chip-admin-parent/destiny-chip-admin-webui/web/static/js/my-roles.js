@@ -75,7 +75,7 @@ function fillTableBody(pageInfo) {
     // 填充pageInfo的list属性填充tbody
     for (var i = 0; i < pageInfo.list.length; i++) {
         var role = pageInfo.list[i];
-        // var roleId = role.id;
+        var roleId = role.id;
         var roleName = role.name;
         var numberTd = "<td>" + (i + 1) + "</td>";
         var checkbox = '<td><input type="checkbox"></td>';
