@@ -134,6 +134,63 @@
                 $("#addModal [name=roleName]").val("");
 
             });
+
+            // 找到动态生成元素附着的静态元素
+            $("#rolePageBody").on("click", ".pencilBtn", function () {
+                // on() 1、事件类型；2、找到真正要绑定事件的元素的选择器；3、事件的响应函数
+
+                // 打开模态框
+                $("#editModal").modal("show");
+
+                // 获取表格中当前行中的角色名称
+                var roleName = $(this).parent().prev().text();
+
+                // 获取当前角色的id,为了让执行更新的按钮获取到id,设为全局
+                window.roleId = this.id;
+
+                // 使用roleName的值设置模态框中的文本框
+                $("#editModal [name=roleName]").val(roleName);
+            });
+
+            // 给更新模态框中更新按钮绑定单击响应函数
+            $("#updateRoleBtn").click(function () {
+
+                // 从文本框中获取新的角色名称
+                var roleName = $("#editModal [name=roleName]").val();
+
+                // 发送ajax请求执行更新
+                $.ajax({
+                    url: "role/update",
+                    type: "post",
+                    data: {
+                        id: window.roleId,
+                        name: roleName
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        var result = response.result;
+
+                        if (result === "SUCCESS") {
+                            layer.msg("操作成功！");
+
+                            // 重新加载分页
+                            generatePage();
+                        }
+
+                        if (result === "FAILED") {
+                            layer.msg("操作失败" + response.message);
+                        }
+                    },
+                    error: function (response) {
+
+                        layer.msg(response.status + " " + response.statusText);
+
+                    }
+                });
+
+                // 关闭模态框
+                $("#editModal").modal("hide");
+            });
         });
 
     </script>

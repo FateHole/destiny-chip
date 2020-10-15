@@ -40,6 +40,14 @@ public class RoleController {
 
         roleService.saveRole(role);
 
-        return ResultEntity.successWithData("成功");
+        return ResultEntity.successWithData("添加成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public ResultEntity<String> updateRole(Role role) {
+        System.out.println(role);
+        roleService.updateRole(role);
+        return ResultEntity.successWithData("修改成功");
     }
 }

@@ -24,4 +24,10 @@ public interface RoleService {
      * @param role 角色名
      */
     void saveRole(Role role);
+
+    /**
+     * 根究传过来的role在数据库中根究id进行修改
+     * @param role 角色修改信息
+     */
+    void updateRole(Role role);
 }
