@@ -62,7 +62,8 @@
             </div>
         </div>
     </div>
-    <%@ include file="../model/model-role-add.jsp" %>
+    <%@ include file="../modal/modal-role-add.jsp" %>
+    <%@ include file="../modal/modal-role-edit.jsp" %>
     <%@ include file="../include/tail.jsp" %>
     <script type="text/javascript" src="static/jquery/jquery.pagination.js"></script>
     <script type="text/javascript" src="static/js/my-roles.js"></script>
