@@ -3,6 +3,8 @@ package com.fatehole.destinychip.service.api;
 import com.fatehole.destinychip.entity.Role;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author FateCat
  * @version 2020-10-12-13:12
@@ -30,4 +32,10 @@ public interface RoleService {
      * @param role 角色修改信息
      */
     void updateRole(Role role);
+
+    /**
+     * 根据传过来的id集合删除对应的role
+     * @param roleIdList id集合
+     */
+    void removeRole(List<Integer> roleIdList);
 }

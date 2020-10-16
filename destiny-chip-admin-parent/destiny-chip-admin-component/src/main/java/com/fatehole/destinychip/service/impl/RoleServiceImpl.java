@@ -1,6 +1,7 @@
 package com.fatehole.destinychip.service.impl;
 
 import com.fatehole.destinychip.entity.Role;
+import com.fatehole.destinychip.entity.RoleExample;
 import com.fatehole.destinychip.mapper.RoleMapper;
 import com.fatehole.destinychip.service.api.RoleService;
 import com.github.pagehelper.PageHelper;
@@ -41,5 +42,20 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void updateRole(Role role) {
         roleMapper.updateByPrimaryKey(role);
+    }
+
+    @Override
+    public void removeRole(List<Integer> roleIdList) {
+        // 创建一个RoleExample对象
+        RoleExample example = new RoleExample();
+
+        // 利用创建的RoleExample对象，创建内部类Criteria对象
+        RoleExample.Criteria criteria = example.createCriteria();
+
+        // 给Criteria对象封装条件
+        criteria.andIdIn(roleIdList);
+
+        // 执行
+        roleMapper.deleteByExample(example);
     }
 }

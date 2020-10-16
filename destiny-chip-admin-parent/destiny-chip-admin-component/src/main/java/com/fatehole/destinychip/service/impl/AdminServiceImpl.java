@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
-    private Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     @Override
     public void saveAdmin(Admin admin) {

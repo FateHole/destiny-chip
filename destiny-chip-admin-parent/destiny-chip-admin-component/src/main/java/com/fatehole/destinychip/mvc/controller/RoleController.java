@@ -6,9 +6,12 @@ import com.fatehole.destinychip.util.ResultEntity;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author FateCat
@@ -46,8 +49,18 @@ public class RoleController {
     @ResponseBody
     @RequestMapping("/update")
     public ResultEntity<String> updateRole(Role role) {
-        System.out.println(role);
+
         roleService.updateRole(role);
+
         return ResultEntity.successWithData("修改成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/remove")
+    public ResultEntity<String> removeRoleByIdArray(@RequestBody List<Integer> roleIdList){
+        System.out.println(roleIdList);
+        roleService.removeRole(roleIdList);
+
+        return ResultEntity.successWithData("删除成功");
     }
 }
