@@ -78,11 +78,11 @@ function fillTableBody(pageInfo) {
         var roleId = role.id;
         var roleName = role.name;
         var numberTd = "<td>" + (i + 1) + "</td>";
-        var checkbox = '<td><input type="checkbox"></td>';
+        var checkbox = '<td><input class="itemBox" type="checkbox"></td>';
         var roleNameTd = "<td>" + roleName + "</td>";
         var checkBtn = '<button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
         var pencilBtn = '<button id="' + roleId + '" type="button" class="btn btn-primary btn-xs pencilBtn"><i class=" glyphicon glyphicon-pencil"></i></button>';
-        var removeBtn = '<button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
+        var removeBtn = '<button id="' + roleId + '" type="button" class="btn btn-danger btn-xs removeBtn"><i class=" glyphicon glyphicon-remove"></i></button>';
         var buttonTd = "<td>" + checkBtn + " " + pencilBtn + " " + removeBtn + "</td>";
 
         var tr = "<tr>" + numberTd + checkbox + roleNameTd + buttonTd + "</tr>";
@@ -133,4 +133,31 @@ function paginateCallBack(pageIndex, jQuery) {
 
     // 取消按钮的查链接行为
     return false;
+}
+
+/**
+ * 声明专门的函数显示修改的模态框
+ */
+function showConfirmModal(roleArray) {
+
+    // 打开模态框
+    $("#confirmModal").modal("show");
+
+    // 清除旧的数据
+    var roleNameDiv = $("#roleNameDiv");
+    roleNameDiv.empty();
+
+    // 在全局范围创建一个数组专门又用来放角色id
+    window.roleIdArray = [];
+
+    // 从传入的roleArray数组中读取
+    for (var i = 0; i < roleArray.length; i++) {
+        var role = roleArray[i];
+        var roleName = role.name;
+        roleNameDiv.append(roleName + "<br/>");
+
+        // 调用数组对象的push()方法存入新元素
+        window.roleIdArray.push(role.roleId);
+    }
+
 }
