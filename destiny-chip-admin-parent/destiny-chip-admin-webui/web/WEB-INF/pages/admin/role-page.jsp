@@ -273,19 +273,20 @@
                 // 创建一个对象数组来获取后面的角色对象
                 var roleArray = [];
                 // 历遍当前选中的多选框
-                $(".itemBox:checked").each(function () {
+                $(".itemBox:checked").each(function() {
+
                     // 使用this引用获取当前的多选框
-                    var roleId = this;
+                    var roleId = this.id;
 
                     // 通过DOM获取当前的角色名
                     var roleName = $(this).parent().next().text();
                     // 添加进数组中
                     roleArray.push({
-                        id: roleId,
+                        roleId: roleId,
                         name: roleName
                     });
                 });
-                    console.log(roleArray);
+                console.log(roleArray);
                 // 检查roleArray的长度是否为0
                 if (roleArray.length === 0) {
                     layer.msg("请至少选择一个角色删除！");
@@ -295,6 +296,7 @@
                 // 调用专门的模态框函数执行删除
                 showConfirmModal(roleArray)
             });
+
         });
 
     </script>
