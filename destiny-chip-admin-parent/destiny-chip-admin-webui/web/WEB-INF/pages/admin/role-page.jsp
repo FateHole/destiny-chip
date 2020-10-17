@@ -214,6 +214,8 @@
 
                             // 重新加载分页
                             generatePage();
+                            // 删除成功之后将全选框取消
+                            $("#summaryBox").prop("checked", false);
                         }
 
                         if (result === "FAILED") {
@@ -286,7 +288,7 @@
                         name: roleName
                     });
                 });
-                console.log(roleArray);
+
                 // 检查roleArray的长度是否为0
                 if (roleArray.length === 0) {
                     layer.msg("请至少选择一个角色删除！");
@@ -294,7 +296,8 @@
                 }
 
                 // 调用专门的模态框函数执行删除
-                showConfirmModal(roleArray)
+                showConfirmModal(roleArray);
+
             });
 
         });
