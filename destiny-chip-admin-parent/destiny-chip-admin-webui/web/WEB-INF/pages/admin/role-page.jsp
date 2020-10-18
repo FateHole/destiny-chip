@@ -97,8 +97,11 @@
             // 给模态框的保存按钮绑定响应函数
             $("#saveRoleBtn").click(function () {
 
+                // 选择变量
+                let addModalRoleName = $("#addModal [name=roleName]");
+
                 // 获取用户在文本框中输入的角色名称
-                var roleName = $.trim($("#addModal [name=roleName]").val());
+                var roleName = $.trim(addModalRoleName.val());
 
                 $.ajax({
                     url: "role/save",
@@ -132,7 +135,7 @@
                 $("#addModal").modal("hide");
 
                 // 清理上次留下的数据
-                $("#addModal [name=roleName]").val("");
+                addModalRoleName.val("");
 
             });
 
