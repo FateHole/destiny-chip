@@ -189,7 +189,6 @@
                     },
                     error: function (response) {
 
-
                         layer.msg(response.status + " " + response.statusText);
 
                     }
