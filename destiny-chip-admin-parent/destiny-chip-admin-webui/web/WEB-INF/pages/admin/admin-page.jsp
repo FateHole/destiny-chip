@@ -2,8 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<%@ include file="../include/header.jsp" %>
+<head>
+    <%@ include file="../include/header.jsp" %>
+    <title>管理-控制面板</title>
+</head>
 
 <body>
 

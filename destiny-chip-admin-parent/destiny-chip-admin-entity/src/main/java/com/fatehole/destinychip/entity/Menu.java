@@ -33,7 +33,7 @@ public class Menu {
     /**
      * 子节点的集合
      */
-    private List<Menu> subset = new ArrayList<>();
+    private List<Menu> children = new ArrayList<>();
 
     /**
      * 控制节点默认为打开
@@ -101,12 +101,12 @@ public class Menu {
         this.icon = icon == null ? null : icon.trim();
     }
 
-    public List<Menu> getSubset() {
-        return subset;
+    public List<Menu> getChildren() {
+        return children;
     }
 
-    public void setSubset(List<Menu> subset) {
-        this.subset = subset;
+    public void setChildren(List<Menu> children) {
+        this.children = children;
     }
 
     public Boolean getOpen() {
@@ -125,7 +125,7 @@ public class Menu {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", icon='" + icon + '\'' +
-                ", subset=" + subset +
+                ", children=" + children +
                 ", open=" + open +
                 '}';
     }
