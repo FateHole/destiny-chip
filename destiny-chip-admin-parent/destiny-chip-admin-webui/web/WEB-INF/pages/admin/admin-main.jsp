@@ -2,7 +2,10 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN">
-<%@ include file="../include/header.jsp" %>
+<head>
+    <%@ include file="../include/header.jsp" %>
+    <title>管理-控制面板</title>
+</head>
 
 <body>
 

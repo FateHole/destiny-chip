@@ -56,7 +56,7 @@ public class MenuController {
             // 如果 pid 不是 null,那么可以根据 pid 到 menuMap 中找到对应的父 menu 对象
             Menu father = menuMap.get(pid);
             // 当前节点存入父节点subset集合
-            father.getSubset().add(menu);
+            father.getChildren().add(menu);
         }
         // 经过上面的运算，根节点包含了整个树形结构，返回根节点就是返回整个树
         return ResultEntity.successWithData(root);
