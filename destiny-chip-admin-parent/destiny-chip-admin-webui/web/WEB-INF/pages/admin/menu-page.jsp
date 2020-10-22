@@ -33,34 +33,13 @@
 
     <%@ include file="../include/tail.jsp" %>
     <script type="text/javascript" src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
+    <script type="text/javascript" src="static/js/my-menu.js"></script>
     <script type="text/javascript">
 
         $(function () {
 
-            // 准备生成树形结构的JSON数据，数据来源是发送Ajax请求得到
-            $.ajax({
-                url: "menu/whole/tree",
-                dataType: "post",
-                success: function (response) {
-                    let result = response.result;
-
-                    if (result === "SUCCESS") {
-
-                        // 创建一个JSON对象用于储存对zTree所做的设置
-                        let setting = {};
-                        // 从响应体中获取用来生成树形结构的JSON数据
-                        let zNodes = response.data;
-
-                        // 初始化树形结构
-                        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-                    }
-
-                    if (result === "FAILED") {
-                        layer.msg(response.message);
-                    }
-                }
-            });
-
+            // 调用专门封装好的函数初始化树形结构
+            generateTree();
         });
 
     </script>
