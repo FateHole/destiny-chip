@@ -15,4 +15,10 @@ public interface MenuService {
      * @return 包含菜单对象的list集合
      */
     List<Menu> getAll();
+
+    /**
+     * 根据传来的menu对象创建节点
+     * @param menu 对象
+     */
+    void saveMenu(Menu menu);
 }
