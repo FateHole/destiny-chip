@@ -26,8 +26,9 @@
                                     <input name="keyword" class="form-control has-success" type="text" placeholder="请输入查询条件">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i>
-                                查询</button>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-search"></i> 查询
+                            </button>
                         </form>
                         <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;">
                             <i class=" glyphicon glyphicon-remove"></i> 删除
@@ -67,9 +68,9 @@
                                                 <td>${admin.username }</td>
                                                 <td>${admin.email }</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success btn-xs">
+                                                    <a href="assign/role/page?id=${admin.id }&pageNum=${requestScope.pageInfo.pageNum }&keyword=${param.keyword }" class="btn btn-success btn-xs">
                                                         <i class=" glyphicon glyphicon-check"></i>
-                                                    </button>
+                                                    </a>
                                                     <a href="admin/edit?id=${admin.id }&pageNum=${requestScope.pageInfo.pageNum }&keyword=${param.keyword }" class="btn btn-primary btn-xs">
                                                         <i class=" glyphicon glyphicon-pencil"></i>
                                                     </a>

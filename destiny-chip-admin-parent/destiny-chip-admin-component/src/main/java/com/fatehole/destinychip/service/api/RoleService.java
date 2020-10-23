@@ -38,4 +38,18 @@ public interface RoleService {
      * @param roleIdList id集合
      */
     void removeRole(List<Integer> roleIdList);
+
+    /**
+     * 根据传来的id查出已分配的角色
+     * @param id 管理员id
+     * @return 包含已分配角色的集合
+     */
+    List<Role> getAssignedRole(Integer id);
+
+    /**
+     * 根据传来的id查出未分配的角色
+     * @param id 管理员id
+     * @return 包含未分配角色的集合
+     */
+    List<Role> getUnAssignedRole(Integer id);
 }

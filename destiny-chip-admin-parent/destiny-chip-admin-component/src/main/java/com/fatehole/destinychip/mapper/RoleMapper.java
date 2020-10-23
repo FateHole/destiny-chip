@@ -30,4 +30,8 @@ public interface RoleMapper {
     int updateByPrimaryKey(Role record);
 
     List<Role> selectRoleByKeyword(String keyword);
+
+    List<Role> selectAssignedRole(Integer id);
+
+    List<Role> selectUnAssignedRole(Integer id);
 }

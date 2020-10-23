@@ -151,4 +151,22 @@ public class AdminServiceImpl implements AdminService {
             }
         }
     }
+
+    /**
+     * 为简化操作，已先根据id删除原有的角色，再将选中的角色添加的方式实现（简化确认的操作）
+     * @param id 管理员id
+     * @param roleIdList 角色列表
+     */
+    @Override
+    public void saveAdminRoleRelationship(Integer id, List<Integer> roleIdList) {
+
+        // 根据id删除旧的关联关系数据
+        adminMapper.deleteRelationship(id);
+
+        // 根据roleIdList和id保存新的关联关系
+        if (roleIdList != null && roleIdList.size() > 0) {
+            adminMapper.insertNewRelationship(id, roleIdList);
+        }
+
+    }
 }

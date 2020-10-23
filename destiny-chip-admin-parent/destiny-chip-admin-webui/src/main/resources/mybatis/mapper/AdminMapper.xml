@@ -106,6 +106,10 @@
     delete from t_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteRelationship">
+    delete from inner_admin_role
+    where admin_id = #{id}
+  </delete>
   <delete id="deleteByExample" parameterType="com.fatehole.destinychip.entity.AdminExample">
     delete from t_admin
     <if test="_parameter != null">
@@ -119,6 +123,14 @@
     values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
+  </insert>
+  <insert id="insertNewRelationship">
+    insert into inner_admin_role(admin_id, role_id)
+    values
+    <foreach collection="roleIdList" item="roleId" separator=",">
+      (#{id}, #{roleId})
+    </foreach>
+
   </insert>
   <insert id="insertSelective" parameterType="com.fatehole.destinychip.entity.Admin">
     insert into t_admin
