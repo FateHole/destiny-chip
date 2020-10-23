@@ -27,4 +27,10 @@ public interface MenuService {
      * @param menu 修改信息
      */
     void updateMenu(Menu menu);
+
+    /**
+     * 根据传过来的id,删除对应的节点
+     * @param id 节点id
+     */
+    void removeMenu(Integer id);
 }
