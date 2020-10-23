@@ -4,10 +4,9 @@ import com.fatehole.destinychip.entity.Menu;
 import com.fatehole.destinychip.service.api.MenuService;
 import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,14 +17,13 @@ import java.util.Map;
  * @version 2020-10-20-11:02
  */
 @RequestMapping("/menu")
-@Controller
+@RestController
 public class MenuController {
 
     @Autowired
     private MenuService menuService;
 
     @RequestMapping("/whole/tree")
-    @ResponseBody
     public ResultEntity<Menu> getWholeTreeNew() {
 
         // 查询全部的 Menu 对象
@@ -63,7 +61,6 @@ public class MenuController {
         return ResultEntity.successWithData(root);
     }
 
-    @ResponseBody
     @RequestMapping("/save")
     public ResultEntity<String> saveMenu(Menu menu) {
 
@@ -72,7 +69,6 @@ public class MenuController {
         return ResultEntity.successWithData("节点创建成功！");
     }
 
-    @ResponseBody
     @RequestMapping("/update")
     public ResultEntity<String> updateMenu(Menu menu) {
 
@@ -81,7 +77,6 @@ public class MenuController {
         return ResultEntity.successWithData("节点修改成功！");
     }
 
-    @ResponseBody
     @RequestMapping("/remove")
     public ResultEntity<String> removeMenu(@RequestParam("id") Integer id) {
 
