@@ -45,3 +45,14 @@ CREATE TABLE `inner_admin_role` (
     `role_id` INT NULL DEFAULT NULL COMMENT '角色ID',
     PRIMARY KEY (`id`)
 );
+
+-- 权限表
+DROP TABLE IF EXISTS `t_auth`;
+
+CREATE TABLE `t_auth` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `name` VARCHAR(200) NULL DEFAULT NULL COMMENT '权限值',    # 给资源分配权限时使用的值「英文」
+    `title` VARCHAR(200) NULL DEFAULT NULL COMMENT '权限名',   # 在页面上显示，让用户便于查看的值「中文」
+    `category_id` INT NULL DEFAULT NULL COMMENT '权限分类',
+    PRIMARY KEY (`id`)
+);
