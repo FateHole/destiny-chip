@@ -21,4 +21,10 @@ public interface MenuService {
      * @param menu 对象
      */
     void saveMenu(Menu menu);
+
+    /**
+     * 根据传来的menu对象进行修改
+     * @param menu 修改信息
+     */
+    void updateMenu(Menu menu);
 }

@@ -58,7 +58,7 @@ public class RoleController {
     @ResponseBody
     @RequestMapping("/remove")
     public ResultEntity<String> removeRoleByIdArray(@RequestBody List<Integer> roleIdList){
-        System.out.println(roleIdList);
+
         roleService.removeRole(roleIdList);
 
         return ResultEntity.successWithData("删除成功");

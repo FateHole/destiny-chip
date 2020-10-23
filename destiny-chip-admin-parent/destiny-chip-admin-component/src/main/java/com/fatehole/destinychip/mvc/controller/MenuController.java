@@ -67,6 +67,16 @@ public class MenuController {
     public ResultEntity<String> saveMenu(Menu menu) {
 
         menuService.saveMenu(menu);
+
         return ResultEntity.successWithData("节点创建成功！");
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public ResultEntity<String> updateMenu(Menu menu) {
+
+        menuService.updateMenu(menu);
+
+        return ResultEntity.successWithData("节点修改成功！");
     }
 }
