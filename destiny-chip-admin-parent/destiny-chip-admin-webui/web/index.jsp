@@ -3,10 +3,8 @@
 <head>
     <title>Title</title>
 </head>
-<%
-    pageContext.setAttribute("cts", request.getContextPath());
-%>
+    <base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/" />
 <body>
-
+    <button id="btn1"><a href="admin/login">test request Body</a></button>
 </body>
 </html>
