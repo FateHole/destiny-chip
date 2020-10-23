@@ -4,9 +4,9 @@ import com.fatehole.destinychip.entity.Menu;
 import com.fatehole.destinychip.service.api.MenuService;
 import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +17,13 @@ import java.util.Map;
  * @version 2020-10-20-11:02
  */
 @RequestMapping("/menu")
-@Controller
+@RestController
 public class MenuController {
 
     @Autowired
     private MenuService menuService;
 
     @RequestMapping("/whole/tree")
-    @ResponseBody
     public ResultEntity<Menu> getWholeTreeNew() {
 
         // 查询全部的 Menu 对象
@@ -56,9 +55,33 @@ public class MenuController {
             // 如果 pid 不是 null,那么可以根据 pid 到 menuMap 中找到对应的父 menu 对象
             Menu father = menuMap.get(pid);
             // 当前节点存入父节点subset集合
-            father.getSubset().add(menu);
+            father.getChildren().add(menu);
         }
         // 经过上面的运算，根节点包含了整个树形结构，返回根节点就是返回整个树
         return ResultEntity.successWithData(root);
+    }
+
+    @RequestMapping("/save")
+    public ResultEntity<String> saveMenu(Menu menu) {
+
+        menuService.saveMenu(menu);
+
+        return ResultEntity.successWithData("节点创建成功！");
+    }
+
+    @RequestMapping("/update")
+    public ResultEntity<String> updateMenu(Menu menu) {
+
+        menuService.updateMenu(menu);
+
+        return ResultEntity.successWithData("节点修改成功！");
+    }
+
+    @RequestMapping("/remove")
+    public ResultEntity<String> removeMenu(@RequestParam("id") Integer id) {
+
+        menuService.removeMenu(id);
+
+        return ResultEntity.successWithData("删除成功！");
     }
 }

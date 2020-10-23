@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
-
+<head>
     <%@ include file="../include/header.jsp" %>
+    <title>管理-控制面板</title>
+</head>
 
 <body>
 
