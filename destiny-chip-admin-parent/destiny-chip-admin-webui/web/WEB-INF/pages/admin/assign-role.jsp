@@ -47,7 +47,7 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <button type="submit" style="width: 150px;margin: 20px 20px 5px 88px" class="btn btn-sm btn-success btn-block">保存</button>
+                            <button id="submitXbox" type="submit" style="width: 150px;margin: 20px 20px 5px 88px" class="btn btn-sm btn-success btn-block">保存</button>
                         </form>
                     </div>
                 </div>
@@ -71,6 +71,9 @@
                 $("select:eq(1) > option:selected").appendTo("select:eq(0)");
             });
 
+            $("#submitXbox").click(function () {
+                $("select:eq(1) > option").prop("selected", "selected");
+            });
         });
 
     </script>
