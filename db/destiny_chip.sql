@@ -2,6 +2,7 @@ CREATE DATABASE `destiny_chip` CHARACTER SET utf8mb4;
 
 USE `destiny_chip`;
 
+-- 管理员表
 DROP TABLE IF EXISTS `t_admin`;
 
 CREATE TABLE `t_admin` (
@@ -14,6 +15,7 @@ CREATE TABLE `t_admin` (
     PRIMARY KEY (`id`)
 );
 
+-- 角色表
 DROP TABLE IF EXISTS `t_role`;
 
 CREATE TABLE `t_role` (
@@ -22,6 +24,7 @@ CREATE TABLE `t_role` (
     PRIMARY KEY (`id`)
 );
 
+-- 菜单表
 DROP TABLE IF EXISTS `t_menu`;
 
 CREATE TABLE `t_menu` (
@@ -29,6 +32,16 @@ CREATE TABLE `t_menu` (
     `pid` INT NULL DEFAULT NULL COMMENT '父节点ID',
     `name` VARCHAR(200) NULL DEFAULT NULL COMMENT '节点名称',
     `url` VARCHAR(200) NULL DEFAULT NULL COMMENT '节点关联路径',
-    `icon` VARCHAR(200) NULL DEFAULT NULL COMMENT '图标',
+    `icon` VARCHAR(200) NULL DEFAULT NULL COMMENT '图标样式',
+    PRIMARY KEY (`id`)
+);
+
+-- 管理员角色中间表
+DROP TABLE IF EXISTS `inner_admin_role`;
+
+CREATE TABLE `inner_admin_role` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `admin_id` INT NULL DEFAULT NULL COMMENT '管理员ID',
+    `role_id` INT NULL DEFAULT NULL COMMENT '角色ID',
     PRIMARY KEY (`id`)
 );
