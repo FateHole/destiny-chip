@@ -16,8 +16,8 @@ import java.util.Map;
  * @author FateCat
  * @version 2020-10-20-11:02
  */
-@RequestMapping("/menu")
 @RestController
+@RequestMapping("/menu")
 public class MenuController {
 
     @Autowired

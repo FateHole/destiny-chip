@@ -58,4 +58,14 @@ public class RoleServiceImpl implements RoleService {
         // 执行
         roleMapper.deleteByExample(example);
     }
+
+    @Override
+    public List<Role> getAssignedRole(Integer id) {
+        return roleMapper.selectAssignedRole(id);
+    }
+
+    @Override
+    public List<Role> getUnAssignedRole(Integer id) {
+        return roleMapper.selectUnAssignedRole(id);
+    }
 }

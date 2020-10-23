@@ -69,8 +69,28 @@
     id, name
   </sql>
   <select id="selectRoleByKeyword" resultMap="BaseResultMap">
-    select id, name from t_role
-    where name like concat('%', #{keyword}, '%')
+    select `id`, `name`
+    from t_role
+    where name
+    like concat('%', #{keyword}, '%')
+  </select>
+  <select id="selectAssignedRole" resultMap="BaseResultMap">
+    select `id`, `name`
+    from t_role
+    where `id` in (
+        select `role_id`
+        from inner_admin_role
+        where admin_id = #{id}
+      )
+  </select>
+  <select id="selectUnAssignedRole" resultMap="BaseResultMap">
+    select `id`, `name`
+    from t_role
+    where `id` not in (
+        select `role_id`
+        from inner_admin_role
+        where admin_id = #{id}
+      )
   </select>
   <select id="selectByExample" parameterType="com.fatehole.destinychip.entity.RoleExample" resultMap="BaseResultMap">
     select

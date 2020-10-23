@@ -59,4 +59,11 @@ public interface AdminService {
      * @param admin 修改信息
      */
     void update(Admin admin);
+
+    /**
+     * 根据提交的id和角色列表，为管理员添加角色
+     * @param id 管理员id
+     * @param roleIdList 角色列表
+     */
+    void saveAdminRoleRelationship(Integer id, List<Integer> roleIdList);
 }
