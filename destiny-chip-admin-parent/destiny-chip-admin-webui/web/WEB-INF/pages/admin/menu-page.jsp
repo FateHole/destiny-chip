@@ -137,7 +137,7 @@
                 // 收集表单数据
                 let name = $("#menuEditModal [name=name]").val();
                 let url = $("#menuEditModal [name=url]").val();
-                let icon = $("#menuEditModal [name=icon]").val();
+                let icon = $("#menuEditModal [name=icon]:checked").val();
 
                 $.ajax({
                     url: "menu/update",
