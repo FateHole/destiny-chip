@@ -6,6 +6,7 @@ import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -78,5 +79,14 @@ public class MenuController {
         menuService.updateMenu(menu);
 
         return ResultEntity.successWithData("节点修改成功！");
+    }
+
+    @ResponseBody
+    @RequestMapping("/remove")
+    public ResultEntity<String> removeMenu(@RequestParam("id") Integer id) {
+
+        menuService.removeMenu(id);
+
+        return ResultEntity.successWithData("删除成功！");
     }
 }
