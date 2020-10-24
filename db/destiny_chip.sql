@@ -56,3 +56,13 @@ CREATE TABLE `t_auth` (
     `category_id` INT NULL DEFAULT NULL COMMENT '权限分类',
     PRIMARY KEY (`id`)
 );
+
+-- 角色权限中间表
+DROP TABLE IF EXISTS `inner_role_auth`;
+
+CREATE TABLE `inner_role_auth` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `role_id` INT NULL DEFAULT NULL COMMENT '角色ID',
+    `auth_id` INT NULL DEFAULT NULL COMMENT '权限ID',
+    PRIMARY KEY (`id`)
+);

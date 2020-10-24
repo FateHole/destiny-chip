@@ -4,6 +4,7 @@
 <head>
     <%@ include file="../include/header.jsp" %>
     <title>管理-控制面板</title>
+    <link rel="stylesheet" href="static/ztree/zTreeStyle.css">
 </head>
 
 <body>
@@ -67,8 +68,10 @@
     <%@ include file="../modal/modal-role-add.jsp" %>
     <%@ include file="../modal/modal-role-edit.jsp" %>
     <%@ include file="../modal/modal-role-confirm.jsp" %>
+    <%@ include file="../modal/modal-role-assign-auth.jsp" %>
     <%@ include file="../include/tail.jsp" %>
     <script type="text/javascript" src="static/jquery/jquery.pagination.js"></script>
+    <script type="text/javascript" src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
     <script type="text/javascript" src="static/js/my-roles.js"></script>
     <script type="text/javascript" >
 
@@ -303,6 +306,75 @@
                 // 调用专门的模态框函数执行删除
                 showConfirmModal(roleArray);
 
+            });
+
+            // 给分配权限按钮绑定单击响应函数
+            rolePageBody.on("click", ".checkBtn", function () {
+
+                // 将当前角色id存入全局变量
+                window.roleId = this.id;
+
+                // 打开模态框
+                $("#assignModal").modal("show");
+
+                // 在模态框中装载书Auth的树形结构
+                fillAuthTree();
+            });
+
+            // 给分配权限的模态框中的分配按钮绑定单击响应函数
+            $("#assignBtn").click(function () {
+
+                // 收集树形结构的各个节点中被勾选的节点
+                // 声明一个用来专门存放id的数组
+                let authIdArray = [];
+
+                // 获取zTreeObj这个对象
+                let zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+
+                // 获取全部被勾选的节点
+                let checkedNodes = zTreeObj.getCheckedNodes();
+
+                // 遍历数组
+                for (let i = 0; i < checkedNodes.length; i++) {
+                    let checkedNode = checkedNodes[i];
+
+                    let authId = checkedNode.id;
+
+                    authIdArray.push(authId);
+                }
+
+                // 发送请求执行分配
+                let requestBody = {
+                    "authIdArray": authIdArray,
+                    "roleId": [window.roleId]
+                }
+
+                requestBody = JSON.stringify(requestBody);
+
+                $.ajax({
+                    url: "assign/role/assign/auth",
+                    type: "post",
+                    data: requestBody,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (response) {
+                        let result = response.result;
+
+                        if (result === "SUCCESS") {
+                            layer.msg("操作成功！");
+                        }
+
+                        if (result === "FAILED") {
+                            layer.msg("操作失败！" + response.message);
+                        }
+                    },
+                    error: function (response) {
+                        layer.msg(response.status + + response.statusText);
+                    }
+                });
+
+                // 关闭模态框
+                $("#assignModal").modal("hide");
             });
 
         });

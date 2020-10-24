@@ -1,15 +1,21 @@
 package com.fatehole.destinychip.mvc.controller;
 
+import com.fatehole.destinychip.entity.Auth;
 import com.fatehole.destinychip.entity.Role;
 import com.fatehole.destinychip.service.api.AdminService;
+import com.fatehole.destinychip.service.api.AuthService;
 import com.fatehole.destinychip.service.api.RoleService;
+import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author FateCat
@@ -25,6 +31,9 @@ public class AssignController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private AuthService authService;
 
     @RequestMapping("/role/page")
     public String toAssignRolePage(@RequestParam("id") Integer id,
@@ -56,5 +65,32 @@ public class AssignController {
 
 
         return "redirect:/admin/getPageInfo?pageNum=" + pageNum + "&keyword=" + keyword;
+    }
+
+    @ResponseBody
+    @RequestMapping("/all/auth")
+    public ResultEntity<List<Auth>> getAllAuth() {
+
+        List<Auth> auths = authService.getAll();
+
+        return ResultEntity.successWithData(auths);
+    }
+
+    @ResponseBody
+    @RequestMapping("/role/auth/id")
+    public ResultEntity<List<Integer>> getAssignedAuthIdByRoleId(@RequestParam("roleId") Integer roleId) {
+
+        List<Integer> authList = authService.getAssignedAuthIdByRoleId(roleId);
+
+        return ResultEntity.successWithData(authList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/role/assign/auth")
+    public ResultEntity<String> saveRoleAuthRelationship(@RequestBody Map<String, List<Integer>> map) {
+
+        authService.saveRoleAuthRelationship(map);
+
+        return ResultEntity.successWithData("权限设置成功");
     }
 }

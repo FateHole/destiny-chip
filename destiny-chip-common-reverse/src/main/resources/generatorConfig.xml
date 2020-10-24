@@ -51,6 +51,6 @@
         </javaClientGenerator>
 
         <!-- 数据库中的表名与entity类对应的映射指定 -->
-        <table tableName="t_menu" domainObjectName="Menu" />
+        <table tableName="t_auth" domainObjectName="Auth" />
     </context>
 </generatorConfiguration>
