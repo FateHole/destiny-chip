@@ -80,7 +80,7 @@ function fillTableBody(pageInfo) {
         var numberTd = "<td>" + (i + 1) + "</td>";
         var checkbox = '<td><input id="' + roleId + '" class="itemBox" type="checkbox"></td>';
         var roleNameTd = "<td>" + roleName + "</td>";
-        var checkBtn = '<button id="' + roleId + '" type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
+        var checkBtn = '<button id="' + roleId + '" type="button" class="btn btn-success btn-xs checkBtn"><i class=" glyphicon glyphicon-check"></i></button>';
         var pencilBtn = '<button id="' + roleId + '" type="button" class="btn btn-primary btn-xs pencilBtn"><i class=" glyphicon glyphicon-pencil"></i></button>';
         var removeBtn = '<button id="' + roleId + '" type="button" class="btn btn-danger btn-xs removeBtn"><i class=" glyphicon glyphicon-remove"></i></button>';
         var buttonTd = "<td>" + checkBtn + " " + pencilBtn + " " + removeBtn + "</td>";
@@ -101,10 +101,10 @@ function fillTableBody(pageInfo) {
 function generateNavigator(pageInfo) {
 
     // 获取总记录数
-    var totalRecord = pageInfo.total;
+    let totalRecord = pageInfo.total;
 
     // 声明相关属性
-    var properties = {
+    let properties = {
         num_edge_entries: 3,    // 边缘页数
         num_display_entries: 5, // 主体页数
         callback: paginateCallBack, // 指定用户点击‘翻页’按钮跳转页面的回调函数
@@ -144,20 +144,112 @@ function showConfirmModal(roleArray) {
     $("#confirmModal").modal("show");
 
     // 清除旧的数据
-    var roleNameDiv = $("#roleNameDiv");
+    let roleNameDiv = $("#roleNameDiv");
     roleNameDiv.empty();
 
     // 在全局范围创建一个数组专门又用来放角色id
     window.roleIdArray = [];
 
     // 从传入的roleArray数组中读取
-    for (var i = 0; i < roleArray.length; i++) {
-        var role = roleArray[i];
-        var roleName = role.name;
+    for (let i = 0; i < roleArray.length; i++) {
+        let role = roleArray[i];
+        let roleName = role.name;
         roleNameDiv.append(roleName + "<br/>");
 
         // 调用数组对象的push()方法存入新元素
         window.roleIdArray.push(role.roleId);
+    }
+
+}
+
+/**
+ * 为权限设置模态框添加树型结构
+ */
+function fillAuthTree() {
+
+    // 发送Ajax请求查询Auth数据
+    let ajaxReturn = $.ajax({
+        url: "assign/all/auth",
+        type: "post",
+        dataType: "json",
+        async: false,
+    });
+
+    if (ajaxReturn.status !== 200) {
+        layer.msg("请求处理出错了！响应码「" + ajaxReturn.status + "」:" + ajaxReturn.statusText);
+        return ;
+    }
+
+    // 从响应结果中获取Auth的JSON数据
+    // 从服务端查询到的list不需要组装成树形结构，这里将他交给zTree处理组装
+    let authList = ajaxReturn.responseJSON.data;
+
+    // 准备对zTree进行设置JSON设置
+    let setting = {
+        data: {
+            simpleData: {
+                // 开启简单JSON的功能
+                enable: true,
+                // 使用categoryId属性关联父节点，不用pId
+                pIdKey: 'categoryId'
+            },
+            key: {
+                // 使用title属性显示节点，不适用默认的name属性
+                name: 'title'
+            }
+        },
+        check: {
+            enable: true
+        }
+    };
+
+    // 生成树形结构
+    // <ul id="authTreeDemo" class="ztree"></ul>
+    $.fn.zTree.init($("#authTreeDemo"), setting, authList);
+
+    // 获取zTreeObj对象
+    let zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo");
+
+    // 调用zTreeObj对象的方法，把节点展开
+    zTreeObj.expandAll(true);
+
+    // 查询已分配的Auth的id组成的数组
+    ajaxReturn = $.ajax({
+        url: "assign/role/auth/id",
+        type: "post",
+        data: {
+            roleId: window.roleId
+        },
+        dataType: "json",
+        async: false
+    });
+
+    if (ajaxReturn.status !== 200) {
+        layer.msg("请求处理出错了！响应码「" + ajaxReturn.status + "」:" + ajaxReturn.statusText);
+        return ;
+    }
+
+    // 从相应结果中获取authIdArray
+    let authIdArray = ajaxReturn.responseJSON.data;
+
+    // 根据authIdArray把树形结构中对应节点勾选上
+    // 历遍authIdArray
+    for (let i = 0; i < authIdArray.length; i++) {
+        let authId = authIdArray[i];
+
+        // 根据id查询树形结构中的对应节点
+        let treeNode = zTreeObj.getNodeByParam("id", authId);
+
+        // 将treeNode设置为被勾选
+        // checked设置为true表示节点勾选
+        let checked = true;
+
+        // checkTypeFlag设置为false,表示不’联动‘，避免将不该勾选的勾选上
+        let checkTypeFlag = false;
+
+        // 执行
+        zTreeObj.checkNode(treeNode, checked, checkTypeFlag);
+
     }
 
 }
