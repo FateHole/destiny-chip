@@ -22,4 +22,35 @@ If there are any problems, I hope you can dispute my mistake😀!
 
 Here's just a list of tech stacks that might be used, and will be added later if needed😳!
 
+- spring-framework-5.2.6.RELEASE
+
+- MySQL5.7.29
+
+- druid
+
+- jackson
+
+- slf4j
+
+- logback
+
+- jstl
+
+- junit
+
+- gson
+
+- spring-security-5.3.5.RELEASE
+
+- Pagehelper
+
+- zTree
+
+- bootstrap
+
+- layer
+
+- jQuery Pagination
+
+
 - . . . (still unfinished!!!🥠)
