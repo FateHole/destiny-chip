@@ -22,7 +22,7 @@
 
         <!-- 使用父工程管理项目依赖的版本 -->
         <fatehole.spring.version>5.2.6.RELEASE</fatehole.spring.version>
-        <fatehole.spring.security.version>5.3.3.RELEASE</fatehole.spring.security.version>
+        <fatehole.spring.security.version>5.3.5.RELEASE</fatehole.spring.security.version>
     </properties>
 
     <dependencyManagement>
