@@ -4,7 +4,7 @@
 function generatePage() {
 
     // 获取分页数据
-    var pageInfo = getPageInfoRemote();
+    let pageInfo = getPageInfoRemote();
 
     // 填充表格
     fillTableBody(pageInfo);
@@ -16,7 +16,7 @@ function generatePage() {
  */
 function getPageInfoRemote() {
 
-    var ajaxResult = $.ajax({
+    let ajaxResult = $.ajax({
         url: "role/getPageInfo",
         type: "post",
         data: {
@@ -31,7 +31,7 @@ function getPageInfoRemote() {
     console.log(ajaxResult);
 
     // 判断当前响应状态码是否为200
-    var statusCode = ajaxResult.status;
+    let statusCode = ajaxResult.status;
 
     if (statusCode !== 200) {
         layer.msg("失败！响应状态码=" + statusCode + "说明信息=" + ajaxResult.statusText);
@@ -39,10 +39,10 @@ function getPageInfoRemote() {
     }
 
     // 如果响应状态码是200，说明请求处理成功，获取pageInfo
-    var resultEntity = ajaxResult.responseJSON;
+    let resultEntity = ajaxResult.responseJSON;
 
     // 从resultEntity中获取result属性
-    var result = resultEntity.result;
+    let result = resultEntity.result;
 
     // 判断result是否成功
     if (result === 'FAILED') {
@@ -73,19 +73,19 @@ function fillTableBody(pageInfo) {
     }
 
     // 填充pageInfo的list属性填充tbody
-    for (var i = 0; i < pageInfo.list.length; i++) {
-        var role = pageInfo.list[i];
-        var roleId = role.id;
-        var roleName = role.name;
-        var numberTd = "<td>" + (i + 1) + "</td>";
-        var checkbox = '<td><input id="' + roleId + '" class="itemBox" type="checkbox"></td>';
-        var roleNameTd = "<td>" + roleName + "</td>";
-        var checkBtn = '<button id="' + roleId + '" type="button" class="btn btn-success btn-xs checkBtn"><i class=" glyphicon glyphicon-check"></i></button>';
-        var pencilBtn = '<button id="' + roleId + '" type="button" class="btn btn-primary btn-xs pencilBtn"><i class=" glyphicon glyphicon-pencil"></i></button>';
-        var removeBtn = '<button id="' + roleId + '" type="button" class="btn btn-danger btn-xs removeBtn"><i class=" glyphicon glyphicon-remove"></i></button>';
-        var buttonTd = "<td>" + checkBtn + " " + pencilBtn + " " + removeBtn + "</td>";
+    for (let i = 0; i < pageInfo.list.length; i++) {
+        let role = pageInfo.list[i];
+        let roleId = role.id;
+        let roleName = role.name;
+        let numberTd = "<td>" + (i + 1) + "</td>";
+        let checkbox = '<td><input id="' + roleId + '" class="itemBox" type="checkbox"></td>';
+        let roleNameTd = "<td>" + roleName + "</td>";
+        let checkBtn = '<button id="' + roleId + '" type="button" class="btn btn-success btn-xs checkBtn"><i class=" glyphicon glyphicon-check"></i></button>';
+        let pencilBtn = '<button id="' + roleId + '" type="button" class="btn btn-primary btn-xs pencilBtn"><i class=" glyphicon glyphicon-pencil"></i></button>';
+        let removeBtn = '<button id="' + roleId + '" type="button" class="btn btn-danger btn-xs removeBtn"><i class=" glyphicon glyphicon-remove"></i></button>';
+        let buttonTd = "<td>" + checkBtn + " " + pencilBtn + " " + removeBtn + "</td>";
 
-        var tr = "<tr>" + numberTd + checkbox + roleNameTd + buttonTd + "</tr>";
+        let tr = "<tr>" + numberTd + checkbox + roleNameTd + buttonTd + "</tr>";
 
         $('#rolePageBody').append(tr);
     }

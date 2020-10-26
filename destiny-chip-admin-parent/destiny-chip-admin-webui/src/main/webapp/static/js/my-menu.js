@@ -59,7 +59,7 @@ function myAddDiyDom(treeId, treeNode) {
      * 提示：“ul 标签的 id_当前节点的序号”部分可以通过访问 treeNode 的 tId 属性得到
      * 根据 id 的生成规则拼接出来 span 标签的 id
      */
-    var spanId = treeNode.tId + "_ico";
+    let spanId = treeNode.tId + "_ico";
 
     /**
      * 根据控制图标的 span 标签的 id 找到这个 span 标签
