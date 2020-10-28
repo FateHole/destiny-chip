@@ -175,7 +175,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>${spring.security.version}</version>
+                <version>${fatehole.spring.security.version}</version>
             </dependency>
 
             <!-- SpringSecurity 配置 -->

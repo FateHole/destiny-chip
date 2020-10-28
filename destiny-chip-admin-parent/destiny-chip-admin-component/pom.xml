@@ -136,24 +136,6 @@
             <artifactId>gson</artifactId>
         </dependency>
 
-        <!-- SpringSecurity 对 Web 应用进行权限管理 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-        </dependency>
-
-        <!-- SpringSecurity 配置 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-        </dependency>
-
-        <!-- spring security 标签库 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>
