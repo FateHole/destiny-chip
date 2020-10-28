@@ -16,6 +16,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!-- 解决字符乱码的filter -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -38,6 +39,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- Spring MVC 的前端控制器 -->
     <servlet>
         <servlet-name>springDispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -55,6 +57,7 @@
 <!--        <url-pattern>*.html</url-pattern>-->
     </servlet-mapping>
 
+    <!-- 支持REST风格的filter -->
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -70,5 +73,16 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/static/**</url-pattern>
     </servlet-mapping>
+
+    <!-- Spring Security配置 -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
