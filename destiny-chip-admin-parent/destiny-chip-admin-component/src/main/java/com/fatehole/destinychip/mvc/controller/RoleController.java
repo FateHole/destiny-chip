@@ -5,6 +5,7 @@ import com.fatehole.destinychip.service.api.RoleService;
 import com.fatehole.destinychip.util.ResultEntity;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,8 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @ResponseBody
+    @PreAuthorize("hasRole('部长')")
+    // @ResponseBody
     @RequestMapping("/getPageInfo")
     public ResultEntity<PageInfo<Role>> getPageInfo(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                     @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,

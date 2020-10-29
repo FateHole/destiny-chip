@@ -10,6 +10,8 @@ public class DestinyChipConstant {
 
     public static final String MESSAGE_ACCESS_FORBIDDEN = "权限不足，请先登陆！";
 
+    public static final String MESSAGE_ACCESS_DENIED = "抱歉！您无权访问！";
+
     public static final String MESSAGE_STRING_INVALIDATE = "字符串常量不合法！";
 
     public static final String MESSAGE_LOGIN_ACCOUNT_ALREADY_IN_USE = "账号名已被注册！";

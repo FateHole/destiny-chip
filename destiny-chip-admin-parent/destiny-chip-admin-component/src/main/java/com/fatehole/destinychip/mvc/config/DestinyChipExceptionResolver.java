@@ -56,6 +56,7 @@ public class DestinyChipExceptionResolver {
             modelAndView.addObject(DestinyChipConstant.ATTR_NAME_EXCEPTION, exception);
             // 设置视图名
             modelAndView.setViewName(viewName);
+
             return modelAndView;
         }
     }
@@ -81,10 +82,11 @@ public class DestinyChipExceptionResolver {
     }
 
     /**
+     * AccessForbidden
      * 处理用户未登录，非法访问受保护资源所抛出的异常
      */
-    @ExceptionHandler(value = AccessForbiddenException.class)
-    public ModelAndView resolveAccessForbiddenException(AccessForbiddenException exception,
+    @ExceptionHandler(value = Exception.class)
+    public ModelAndView resolveException(Exception exception,
                                                     HttpServletRequest request,
                                                     HttpServletResponse response) throws IOException {
         return commonResolve("admin/admin-login", exception, request, response);

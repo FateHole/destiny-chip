@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -33,13 +34,16 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     @Override
     public void saveAdmin(Admin admin) {
         // 密码加密
         String password = admin.getPassword();
-        password = DestinyChipUtil.md5(password);
+        password = passwordEncoder.encode(password);
         admin.setPassword(password);
 
         // 生成创建时间
@@ -71,7 +75,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin getAdminBbyLoginAccount(String loginAccount, String password) {
+    public Admin getAdminByLoginAccount(String loginAccount, String password) {
 
         // 1、根据登陆账号查询Admin对象
         // 创建一个AdminExample对象
@@ -168,5 +172,19 @@ public class AdminServiceImpl implements AdminService {
             adminMapper.insertNewRelationship(id, roleIdList);
         }
 
+    }
+
+    @Override
+    public Admin getAdminByLoginAccount(String username) {
+
+        AdminExample example = new AdminExample();
+
+        AdminExample.Criteria criteria = example.createCriteria();
+
+        criteria.andLoginAccountEqualTo(username);
+
+        List<Admin> admins = adminMapper.selectByExample(example);
+
+        return admins.get(0);
     }
 }

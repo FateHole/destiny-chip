@@ -5,6 +5,7 @@ import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.service.api.AdminService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class AdminController {
                           HttpSession session) {
         // 调用service方法进行登陆检查
         // 如果可以返回admin对象说明验证成功，否则登陆名和密码不正确会抛出异常
-        Admin admin = adminService.getAdminBbyLoginAccount(loginAccount, password);
+        Admin admin = adminService.getAdminByLoginAccount(loginAccount, password);
 
         session.setAttribute(DestinyChipConstant.ATTR_LOGIN_NAME_ADMIN, admin);
 
@@ -70,6 +71,7 @@ public class AdminController {
         return "redirect:/admin/getPageInfo?pageNum=" + pageNum + "&keyword=" + keyword;
     }
 
+    @PreAuthorize("hasAuthority('user:save')")
     @RequestMapping("/save")
     public String save(Admin admin) {
 
