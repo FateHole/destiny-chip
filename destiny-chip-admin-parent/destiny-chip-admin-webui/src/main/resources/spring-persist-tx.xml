@@ -14,7 +14,7 @@
 
     <!-- 配置自动扫描的包：将Service扫描到IOC容器中 -->
     <context:component-scan base-package="com.fatehole.destinychip.service" />
-
+    <context:component-scan base-package="com.fatehole.destinychip.mvc.config"/>
     <!-- 事务管理器：控制着数据源 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!-- 装配数据源 -->

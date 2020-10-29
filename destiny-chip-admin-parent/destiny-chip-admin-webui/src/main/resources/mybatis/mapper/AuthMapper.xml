@@ -159,6 +159,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="selectAssignedAuthNameByAdminId" resultType="string">
+    select distinct t_auth.name
+    from t_auth
+    left join inner_role_auth ira on t_auth.id = ira.auth_id
+    left join inner_admin_role iar on ira.role_id = iar.role_id
+    where iar.admin_id = #{id}
+    and t_auth.name != ''
+    and t_auth.name is not null
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_auth
     <set>
