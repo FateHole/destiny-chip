@@ -3,7 +3,6 @@ package com.fatehole.destinychip.mvc.config;
 import com.fatehole.destinychip.entity.Admin;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -27,7 +26,11 @@ public class SecurityAdmin extends User {
         // 不知是否应该再此加密？？？？？？？(柑橘非常「amazing」)
         super(originalAdmin.getUsername(), originalAdmin.getPassword(), authorities);
 
+        // 给本类的this.originalAdmin赋值
         this.originalAdmin = originalAdmin;
+
+        // 擦除Admin对象的密码
+        this.originalAdmin.setPassword(null);
     }
 
     public Admin getOriginalAdmin() {

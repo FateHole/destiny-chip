@@ -5,6 +5,7 @@ import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.service.api.AdminService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,6 +71,7 @@ public class AdminController {
         return "redirect:/admin/getPageInfo?pageNum=" + pageNum + "&keyword=" + keyword;
     }
 
+    @PreAuthorize("hasAuthority('user:save')")
     @RequestMapping("/save")
     public String save(Admin admin) {
 

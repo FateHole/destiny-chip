@@ -5,10 +5,8 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.fatehole.destinychip.mvc">
-        <context:exclude-filter type="assignable"
-                                expression="com.fatehole.destinychip.mvc.config.WebAppSecurityConfig"/>
-    </context:component-scan>
+    <!-- 排除之后注解会无法使用 Spring Security 框架 -->
+    <context:component-scan base-package="com.fatehole.destinychip.mvc" />
 
     <!-- 放行静态资源访问 -->
     <mvc:default-servlet-handler />
