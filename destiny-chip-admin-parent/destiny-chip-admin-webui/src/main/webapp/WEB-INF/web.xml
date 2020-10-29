@@ -20,6 +20,7 @@
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <!-- 指定字符集 -->
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>

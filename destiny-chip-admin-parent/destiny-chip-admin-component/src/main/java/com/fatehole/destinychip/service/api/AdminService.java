@@ -30,7 +30,7 @@ public interface AdminService {
      * @return 如果成功，返回Admin对象;
      *         失败抛出异常
      */
-    Admin getAdminBbyLoginAccount(String loginAccount, String password);
+    Admin getAdminByLoginAccount(String loginAccount, String password);
 
     /**
      * 分页方法
@@ -66,4 +66,11 @@ public interface AdminService {
      * @param roleIdList 角色列表
      */
     void saveAdminRoleRelationship(Integer id, List<Integer> roleIdList);
+
+    /**
+     * 根据账号名查询Admin对象
+     * @param username 账号名
+     * @return Admin对象
+     */
+    Admin getAdminByLoginAccount(String username);
 }

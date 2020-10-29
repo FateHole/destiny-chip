@@ -30,7 +30,7 @@ public class AdminController {
                           HttpSession session) {
         // 调用service方法进行登陆检查
         // 如果可以返回admin对象说明验证成功，否则登陆名和密码不正确会抛出异常
-        Admin admin = adminService.getAdminBbyLoginAccount(loginAccount, password);
+        Admin admin = adminService.getAdminByLoginAccount(loginAccount, password);
 
         session.setAttribute(DestinyChipConstant.ATTR_LOGIN_NAME_ADMIN, admin);
 
