@@ -2,7 +2,6 @@ package com.fatehole.destinychip.mvc.config;
 
 import com.fatehole.destinychip.entity.Admin;
 import com.fatehole.destinychip.entity.Role;
-import com.fatehole.destinychip.mapper.AdminMapper;
 import com.fatehole.destinychip.service.api.AdminService;
 import com.fatehole.destinychip.service.api.AuthService;
 import com.fatehole.destinychip.service.api.RoleService;

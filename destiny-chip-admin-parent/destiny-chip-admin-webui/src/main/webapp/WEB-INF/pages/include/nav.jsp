@@ -11,7 +11,7 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
                             <i class="glyphicon glyphicon-user"></i>
-                            ${sessionScope.loginAdmin.username }
+                            「<security:authentication property="principal.originalAdmin.username"/>」
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
