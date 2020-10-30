@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fatehole</groupId>
-    <artifactId>destiny-chip-admin-parent</artifactId>
+    <artifactId>admin-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>destiny-chip-admin-webui</module>
-        <module>destiny-chip-admin-component</module>
-        <module>destiny-chip-admin-entity</module>
+        <module>admin-webui</module>
+        <module>admin-component</module>
+        <module>admin-entity</module>
     </modules>
 
     <properties>
