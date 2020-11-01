@@ -25,7 +25,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成model类的位置，重要！！ -->
-        <javaModelGenerator targetPackage="com.fatehole.destinychip.entity"
+        <javaModelGenerator targetPackage="com.fatehole.destinychip.entity.po"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -51,6 +51,6 @@
         </javaClientGenerator>
 
         <!-- 数据库中的表名与entity类对应的映射指定 -->
-        <table tableName="t_auth" domainObjectName="Auth" />
+        <table tableName="t_member" domainObjectName="MemberPO" />
     </context>
 </generatorConfiguration>
