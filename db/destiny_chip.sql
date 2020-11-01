@@ -66,3 +66,20 @@ CREATE TABLE `inner_role_auth` (
     `auth_id` INT NULL DEFAULT NULL COMMENT '权限ID',
     PRIMARY KEY (`id`)
 );
+
+-- 会员表
+DROP TABLE IF EXISTS `t_member`;
+
+CREATE TABLE `t_member` (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `login_account` VARCHAR(255) NULL UNIQUE DEFAULT NULL COMMENT '登陆账号',
+    `username` VARCHAR(30) NULL DEFAULT NULL COMMENT '用户昵称',
+    `password` VARCHAR(255) NULL DEFAULT NULL COMMENT '登陆密码',
+    `email` VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱地址',
+    `auth_status` INT NULL DEFAULT 0 COMMENT '0 - 未实名认证、1 - 实名认证申请中、2 - 已实名认证',
+    `user_type` INT NULL DEFAULT NULL COMMENT '0 - 个人、1 - 企业',
+    `real_name` VARCHAR(255) NULL DEFAULT NULL COMMENT '真实姓名',
+    `card_number` VARCHAR(255) NULL DEFAULT NULL COMMENT '卡号',
+    `account_type` INT NULL DEFAULT NULL COMMENT '0 - 企业、1 - 个体、2 - 个人、3 - 政府',
+    PRIMARY KEY (`id`)
+);
