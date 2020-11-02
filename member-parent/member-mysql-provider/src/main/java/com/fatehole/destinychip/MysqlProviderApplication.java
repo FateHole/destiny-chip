@@ -11,9 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("com.fatehole.destinychip.mapper")
 @SpringBootApplication
-public class MysqlProvider {
+public class MysqlProviderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MysqlProvider.class, args);
+        SpringApplication.run(MysqlProviderApplication.class, args);
     }
 }

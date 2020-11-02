@@ -13,7 +13,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/destiny_chip?serverTimezone=Asia/Shanghai
 
 mybatis:
-  mapper-locations: classpath:./mybatis/mapper/*Mapper.xml
+  mapper-locations: classpath:/mybatis/mapper/*Mapper.xml
 
 logging:
   level:

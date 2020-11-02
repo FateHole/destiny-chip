@@ -3,9 +3,10 @@ package com.fatehole.destinychip.mapper;
 import com.fatehole.destinychip.entity.po.MemberPO;
 import com.fatehole.destinychip.entity.po.MemberPOExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface MemberPOMapper {
     long countByExample(MemberPOExample example);
 
