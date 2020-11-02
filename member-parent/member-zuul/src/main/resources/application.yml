@@ -1,0 +1,19 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: destiny-chip-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*"
+  routes:
+    destiny-chip-portal:
+      service-id: destiny-chip-auth
+      path: /**
