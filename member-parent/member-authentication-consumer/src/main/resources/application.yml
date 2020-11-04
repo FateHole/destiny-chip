@@ -12,3 +12,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:1000/eureka
+
+short:
+  message:
+    app-code: c39653b25b44475eb390fea4234e23fc
+    host: https://gyytz.market.alicloudapi.com
+    method: post
+    path: /sms/smsSend
+    sms-sign-id: 2e65b1bb3d054466b82f0c9d125465e2
+    template-id: f5e68c3ad6b6474faa8cd178b21d3377

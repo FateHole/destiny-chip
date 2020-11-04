@@ -8,9 +8,9 @@ package com.fatehole.destinychip.util;
  */
 public class ResultEntity<T> {
 
-    private static final String SUCCESS = "SUCCESS";
+    public static final String SUCCESS = "SUCCESS";
 
-    private static final String FAILED = "FAILED";
+    public static final String FAILED = "FAILED";
 
     /**
      * 用来封装当前请求是成功还是失败

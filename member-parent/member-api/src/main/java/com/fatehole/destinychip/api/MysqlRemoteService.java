@@ -3,8 +3,10 @@ package com.fatehole.destinychip.api;
 import com.fatehole.destinychip.entity.po.MemberPO;
 import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author FateCat
@@ -21,4 +23,7 @@ public interface MysqlRemoteService {
      */
     @RequestMapping("/get/memberpo/by/login/remote")
     ResultEntity<MemberPO> getMemberPoByLoginAccountRemote(@RequestParam("loginAccount") String loginAccount);
+
+    @RequestMapping("/save/member/remote")
+    ResultEntity<MemberPO> saveMember(@RequestBody MemberPO memberPO);
 }
