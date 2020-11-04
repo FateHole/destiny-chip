@@ -6,6 +6,7 @@ import com.fatehole.destinychip.mapper.MemberPOMapper;
 import com.fatehole.destinychip.service.api.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -39,5 +40,11 @@ public class MemberServiceImpl implements MemberService {
 
         // 返回结果
         return memberPos.get(0);
+    }
+
+    // @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class,readOnly = false)
+    @Override
+    public void saveMember(MemberPO memberPO) {
+        memberPOMapper.insertSelective(memberPO);
     }
 }

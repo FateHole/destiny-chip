@@ -15,4 +15,6 @@ public interface MemberService {
      * @return 返回信息
      */
     MemberPO getMemberPoByLoginAccountRemote(String loginAccount);
+
+    void saveMember(MemberPO memberPO);
 }

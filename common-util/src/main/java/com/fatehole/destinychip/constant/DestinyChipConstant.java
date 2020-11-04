@@ -23,4 +23,6 @@ public class DestinyChipConstant {
     public static final String ATTR_LOGIN_NAME_ADMIN = "loginAdmin";
 
     public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
+
+    public static final String REDIS_CODE_PREFIX = "REDIS_CODE_PREFIX_";
 }

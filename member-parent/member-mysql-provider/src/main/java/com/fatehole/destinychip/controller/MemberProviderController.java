@@ -1,9 +1,11 @@
 package com.fatehole.destinychip.controller;
 
+import com.fatehole.destinychip.constant.DestinyChipConstant;
 import com.fatehole.destinychip.entity.po.MemberPO;
 import com.fatehole.destinychip.service.api.MemberService;
 import com.fatehole.destinychip.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +35,18 @@ public class MemberProviderController {
             return ResultEntity.failed(e.getMessage());
         }
 
+    }
+
+    @RequestMapping("/save/member/remote")
+    public ResultEntity<String> saveMember(MemberPO memberPO) {
+        try {
+            memberService.saveMember(memberPO);
+            return ResultEntity.successWithOutData();
+        }catch (Exception e){
+            if (e instanceof DuplicateKeyException){
+                return ResultEntity.failed(DestinyChipConstant.MESSAGE_LOGIN_ACCOUNT_ALREADY_IN_USE);
+            }
+            return ResultEntity.failed(e.getMessage());
+        }
     }
 }
